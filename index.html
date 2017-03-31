@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -103,7 +103,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
@@ -304,6 +304,338 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/Java/如何优雅的设计java异常/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="luosv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="luosv`s blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/31/Java/如何优雅的设计java异常/" itemprop="url">
+                  如何优雅的设计java异常
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T17:36:36+08:00">
+                2017-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/31/Java/如何优雅的设计java异常/" class="leancloud_visitors" data-flag-title="如何优雅的设计java异常">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本文转载自<a href="http://lrwinx.github.io/">Lrwin的java技术博客</a></p>
+<h1 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h1><blockquote>
+<p>异常处理是程序开发中必不可少操作之一，但如何正确优雅的对异常进行处理确是一门学问，笔者根据自己的开发经验来谈一谈我是如何对异常进行处理的。<br>由于本文只作一些经验之谈，不涉及到基础知识部分，如果读者对异常的概念还很模糊，请先查看基础知识。</p>
+</blockquote>
+<h1 id="如何选择异常类型"><a href="#如何选择异常类型" class="headerlink" title="如何选择异常类型"></a>如何选择异常类型</h1><h2 id="异常的类别"><a href="#异常的类别" class="headerlink" title="异常的类别"></a>异常的类别</h2><p>正如我们所知道的，java中的异常的超类是java.lang.Throwable(后文省略为Throwable),它有两个比较重要的子类,java.lang.Exception(后文省略为Exception)和java.lang.Error(后文省略为Error)，其中Error由JVM虚拟机进行管理,如我们所熟知的OutOfMemoryError异常等，所以我们本文不关注Error异常，那么我们细说一下Exception异常。<br>Exception异常有个比较重要的子类，叫做RuntimeException。我们将RuntimeException或其他继承自RuntimeException的子类称为非受检异常(unchecked Exception)，其他继承自Exception异常的子类称为受检异常(checked Exception)。本文重点来关注一下受检异常和非受检异常这两种异常。</p>
+<h2 id="如何选择异常"><a href="#如何选择异常" class="headerlink" title="如何选择异常"></a>如何选择异常</h2><p>从笔者的开发经验来看，如果在一个应用中，需要开发一个方法(如某个功能的service方法)，这个方法如果中间可能出现异常，那么你需要考虑这个异常出现之后是否调用者可以处理，并且你是否希望调用者进行处理，如果调用者可以处理，并且你也希望调用者进行处理，那么就要抛出受检异常，提醒调用者在使用你的方法时，考虑到如果抛出异常时如果进行处理，相似的，如果在写某个方法时，你认为这是个偶然异常，理论上说，你觉得运行时可能会碰到什么问题，而这些问题也许不是必然发生的，也不需要调用者显示的通过异常来判断业务流程操作的，那么这时就可以使用一个RuntimeException这样的非受检异常.<br>好了，估计我上边说的这段话，你读了很多遍也依然觉得晦涩了。<br>那么，请跟着我的思路，在慢慢领会一下。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/31/Java/如何优雅的设计java异常/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/Java/细思极恐-你真的会写java吗/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="luosv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="luosv`s blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/31/Java/细思极恐-你真的会写java吗/" itemprop="url">
+                  细思极恐-你真的会写java吗?
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T17:01:12+08:00">
+                2017-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/31/Java/细思极恐-你真的会写java吗/" class="leancloud_visitors" data-flag-title="细思极恐-你真的会写java吗?">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本文转载自<a href="http://lrwinx.github.io/">Lrwin的java技术博客</a></p>
+<h1 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h1><blockquote>
+<p>自2013年毕业后，今年已经是我工作的第4个年头了，总在做java相关的工作，终于有时间坐下来，写一篇关于java写法的一篇文章，来探讨一下如果你真的是一个java程序员，那你真的会写java吗?<br>笔者是一个务实的程序员，故本文绝非扯淡文章，文中内容都是干货，望读者看后，能有所收获。</p>
+</blockquote>
+<h1 id="文章核心"><a href="#文章核心" class="headerlink" title="文章核心"></a>文章核心</h1><p>其实，本不想把标题写的那么恐怖，只是发现很多人干了几年java以后，都自认为是一个不错的java程序员了，可以拿着上万的工资都处宣扬自己了，写这篇文章的目的并不是嘲讽和我一样做java的同行们，只是希望读者看到此骗文章后，可以和我一样，心平气和的争取做一个优秀的程序员。</p>
+<h2 id="讲述方向"><a href="#讲述方向" class="headerlink" title="讲述方向"></a>讲述方向</h2><p>由于一直从事移动互联网相关工作，java开发中经常和移动端打交道或者做一些后端的工作，所以本篇文章更可能涉及和移动端的交互或者与后端的交互方式，笔者希望以自身的一些学习经验或者开发经验，可以带动认真阅读本篇文章的读者们，让大家对java有一个更好的态度去学习它，它不只是一个赚钱的工具而已。</p>
+<p>笔者身边有很多与笔者年龄相仿或年龄更大的朋友或同事，经常有人问我：“你现在还在学习吗？我觉得没什么好学的，这些东西都差不多”，我总是回答只要有时间，我就要看一会书，这个时候，大家都会露出一副不屑的眼神或笑容。其实，非常能理解身边朋友或同事的看法，以目前状态来讲，大多都是工作至少5年的程序员了，对于公司大大小小的业务需要，以目前的知识储备来讲，都可以轻松应对，“没有什么好学的”其实这句话没有多大的问题，但是，如果你对编程还有一点点兴趣，只是不知道如何努力或改进，希望本篇文章可以帮到你。</p>
+<h2 id="技术点"><a href="#技术点" class="headerlink" title="技术点"></a>技术点</h2><p>本文不是一个吹嘘的文章，不会讲很多高深的架构，相反，会讲解很多基础的问题和写法问题，如果读者自认为基础问题和写法问题都是不是问题，那请忽略这篇文章，节省出时间去做一些有意义的事情。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/31/Java/细思极恐-你真的会写java吗/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/20/哎折腾/Hexo+Next配置Blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -436,9 +768,6 @@
       
     </div>
 
-    <div align="center">
-      
-    </div>
 
     <div>
       
@@ -513,7 +842,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -524,7 +853,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -535,7 +864,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -630,7 +959,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+    NexT.Mist
   </a>
 </div>
         
@@ -699,13 +1028,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
-
-
 
   
 
@@ -998,7 +1320,7 @@
   
 
   <!-- 动态背景 -->
-  <script type="text/javascript" src="/js/src/particle.js"></script>
+<!--   <script type="text/javascript" src="/js/src/particle.js"></script> -->
   <!-- 小红心 -->
   <script type="text/javascript" src="/js/src/love.js"></script>
   <!--卖萌-->
