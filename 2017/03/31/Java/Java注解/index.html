@@ -87,25 +87,28 @@
 
 
 
-<meta name="description" content="Java 注解注解基础知识点定义：注解（Annotation），也叫元数据。一种代码级别的说明。它是JDK1.5及以后版本引入的一个特性，与类、接口、枚举是在同一个层次。它可以声明在包、类、字段、方法、局部变量、方法参数等的前面，用来对这些元素进行说明，注释。
+<meta name="description" content="注解基础知识点定义：注解（Annotation），也叫元数据。一种代码级别的说明。它是JDK1.5及以后版本引入的一个特性，与类、接口、枚举是在同一个层次。它可以声明在包、类、字段、方法、局部变量、方法参数等的前面，用来对这些元素进行说明，注释。
 作用分类：
 ① 编写文档：通过代码里标识的元数据生成文档【生成文档doc文档】
-② 代码分析：通过代码里标识的元数据对代码进行分析【使用反">
+② 代码分析：通过代码里标识的元数据对代码进行分析【使用反射】
+③ 编译">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java注解">
 <meta property="og:url" content="http://yoursite.com/2017/03/31/Java/Java注解/index.html">
 <meta property="og:site_name" content="luosv`s blog">
-<meta property="og:description" content="Java 注解注解基础知识点定义：注解（Annotation），也叫元数据。一种代码级别的说明。它是JDK1.5及以后版本引入的一个特性，与类、接口、枚举是在同一个层次。它可以声明在包、类、字段、方法、局部变量、方法参数等的前面，用来对这些元素进行说明，注释。
+<meta property="og:description" content="注解基础知识点定义：注解（Annotation），也叫元数据。一种代码级别的说明。它是JDK1.5及以后版本引入的一个特性，与类、接口、枚举是在同一个层次。它可以声明在包、类、字段、方法、局部变量、方法参数等的前面，用来对这些元素进行说明，注释。
 作用分类：
 ① 编写文档：通过代码里标识的元数据生成文档【生成文档doc文档】
-② 代码分析：通过代码里标识的元数据对代码进行分析【使用反">
-<meta property="og:updated_time" content="2017-04-05T09:29:57.000Z">
+② 代码分析：通过代码里标识的元数据对代码进行分析【使用反射】
+③ 编译">
+<meta property="og:updated_time" content="2017-04-05T14:43:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java注解">
-<meta name="twitter:description" content="Java 注解注解基础知识点定义：注解（Annotation），也叫元数据。一种代码级别的说明。它是JDK1.5及以后版本引入的一个特性，与类、接口、枚举是在同一个层次。它可以声明在包、类、字段、方法、局部变量、方法参数等的前面，用来对这些元素进行说明，注释。
+<meta name="twitter:description" content="注解基础知识点定义：注解（Annotation），也叫元数据。一种代码级别的说明。它是JDK1.5及以后版本引入的一个特性，与类、接口、枚举是在同一个层次。它可以声明在包、类、字段、方法、局部变量、方法参数等的前面，用来对这些元素进行说明，注释。
 作用分类：
 ① 编写文档：通过代码里标识的元数据生成文档【生成文档doc文档】
-② 代码分析：通过代码里标识的元数据对代码进行分析【使用反">
+② 代码分析：通过代码里标识的元数据对代码进行分析【使用反射】
+③ 编译">
 
 
 
@@ -418,7 +421,7 @@
       
 
       
-        <h1 id="Java-注解"><a href="#Java-注解" class="headerlink" title="Java 注解"></a>Java 注解</h1><h4 id="注解基础知识点"><a href="#注解基础知识点" class="headerlink" title="注解基础知识点"></a>注解基础知识点</h4><p>定义：注解（Annotation），也叫元数据。一种代码级别的说明。它是JDK1.5及以后版本引入的一个特性，与类、接口、枚举是在同一个层次。它可以声明在包、类、字段、方法、局部变量、方法参数等的前面，用来对这些元素进行说明，注释。</p>
+        <h3 id="注解基础知识点"><a href="#注解基础知识点" class="headerlink" title="注解基础知识点"></a>注解基础知识点</h3><p>定义：注解（Annotation），也叫元数据。一种代码级别的说明。它是JDK1.5及以后版本引入的一个特性，与类、接口、枚举是在同一个层次。它可以声明在包、类、字段、方法、局部变量、方法参数等的前面，用来对这些元素进行说明，注释。</p>
 <p>作用分类：</p>
 <p>① 编写文档：通过代码里标识的元数据生成文档【生成文档doc文档】</p>
 <p>② 代码分析：通过代码里标识的元数据对代码进行分析【使用反射】</p>
@@ -447,7 +450,7 @@
 <p>代码分析：通过代码里标识的元数据对代码进行分析。</p>
 <p>编译检查：通过代码里标识的元数据让<a href="http://baike.baidu.com/item/%E7%BC%96%E8%AF%91%E5%99%A8" target="_blank" rel="external">编译器</a>能实现基本的编译检查</p>
 <a id="more"></a>
-<h3 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h3><h5 id="基本内置注解"><a href="#基本内置注解" class="headerlink" title="基本内置注解"></a>基本内置注解</h5><p>@Override</p>
+<h3 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h3><h4 id="基本内置注解"><a href="#基本内置注解" class="headerlink" title="基本内置注解"></a>基本内置注解</h4><p>@Override</p>
 <p>它的作用是对覆盖超类中方法的方法进行标记，如果被标记的方法并没有实际覆盖超类中的方法，则编译器会发出错误警告。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OverrideDemoTest</span> </span>&#123;</div><div class="line">  <span class="comment">//@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"测试注解"</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>@Deprecated</p>
@@ -463,7 +466,7 @@
 <p>finally ，任何 finally 子句不能正常完成时的警告</p>
 <p>all，关于以上所有情况的警告</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SuppressWarningsDemoTest</span> </span>&#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> List list = <span class="keyword">new</span> ArrayList();</div><div class="line">  <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Stringdata)</span> </span>&#123;</div><div class="line">    list.add(data);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h5 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h5><p>它类似于新创建一个接口文件，但为了区分，我们需要将它声明为@interface,如下例：</p>
+<h4 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h4><p>它类似于新创建一个接口文件，但为了区分，我们需要将它声明为@interface,如下例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> NewAnotation &#123;</div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>使用自定义注解</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnnotationTest</span> </span>&#123;</div><div class="line">  <span class="meta">@NewAnnotation</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    </div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -717,7 +720,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-注解"><span class="nav-number">1.</span> <span class="nav-text">Java 注解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注解基础知识点"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">注解基础知识点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-注解"><span class="nav-number">1.0.1.</span> <span class="nav-text">JAVA 注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元数据的作用"><span class="nav-number">1.0.2.</span> <span class="nav-text">元数据的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元注解"><span class="nav-number">1.0.3.</span> <span class="nav-text">元注解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本内置注解"><span class="nav-number">1.0.3.0.1.</span> <span class="nav-text">基本内置注解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自定义注解"><span class="nav-number">1.0.3.0.2.</span> <span class="nav-text">自定义注解</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#注解基础知识点"><span class="nav-number">1.</span> <span class="nav-text">注解基础知识点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA-注解"><span class="nav-number">2.</span> <span class="nav-text">JAVA 注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元数据的作用"><span class="nav-number">3.</span> <span class="nav-text">元数据的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元注解"><span class="nav-number">4.</span> <span class="nav-text">元注解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本内置注解"><span class="nav-number">4.1.</span> <span class="nav-text">基本内置注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义注解"><span class="nav-number">4.2.</span> <span class="nav-text">自定义注解</span></a></li></ol></li></ol></div>
             
 
           </div>
