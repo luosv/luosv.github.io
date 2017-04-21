@@ -101,7 +101,7 @@
 ① 编写文档：通过代码里标识的元数据生成文档【生成文档doc文档】
 ② 代码分析：通过代码里标识的元数据对代码进行分析【使用反射】
 ③ 编译">
-<meta property="og:updated_time" content="2017-04-21T13:06:58.000Z">
+<meta property="og:updated_time" content="2017-04-21T13:20:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java注解">
 <meta name="twitter:description" content="注解基础知识点定义：注解（Annotation），也叫元数据。一种代码级别的说明。它是JDK1.5及以后版本引入的一个特性，与类、接口、枚举是在同一个层次。它可以声明在包、类、字段、方法、局部变量、方法参数等的前面，用来对这些元素进行说明，注释。
@@ -444,12 +444,12 @@
 </tr>
 </tbody>
 </table>
+<a id="more"></a>
 <h3 id="JAVA-注解"><a href="#JAVA-注解" class="headerlink" title="JAVA 注解"></a>JAVA 注解</h3><p>Annotation(注解)是JDK1.5及以后版本引入的。它可以用于创建文档，跟踪代码中的依赖性，甚至执行基本编译时检查。注解是以‘@注解名’在代码中存在的，根据注解参数的个数，我们可以将注解分为：标记注解、单值注解、完整注解三类。它们都不会直接影响到程序的语义，只是作为注解（标识）存在，我们可以通过<a href="http://baike.baidu.com/item/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6" target="_blank" rel="external">反射机制</a>编程实现对这些元数据（用来描述数据的数据）的访问。另外，你可以在编译时选择代码里的注解是否只存在于<a href="http://baike.baidu.com/item/%E6%BA%90%E4%BB%A3%E7%A0%81" target="_blank" rel="external">源代码</a>级，或者它也能在class文件、或者运行时中出现（SOURCE/CLASS/RUNTIME）。</p>
 <h3 id="元数据的作用"><a href="#元数据的作用" class="headerlink" title="元数据的作用"></a>元数据的作用</h3><p>如果要对于元数据的作用进行分类，还没有明确的定义，不过我们可以根据它所起的作用，大致可分为三类：</p>
 <p>编写文档：通过代码里标识的元数据生成文档。</p>
 <p>代码分析：通过代码里标识的元数据对代码进行分析。</p>
 <p>编译检查：通过代码里标识的元数据让<a href="http://baike.baidu.com/item/%E7%BC%96%E8%AF%91%E5%99%A8" target="_blank" rel="external">编译器</a>能实现基本的编译检查</p>
-<a id="more"></a>
 <h3 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h3><h4 id="基本内置注解"><a href="#基本内置注解" class="headerlink" title="基本内置注解"></a>基本内置注解</h4><p>@Override</p>
 <p>它的作用是对覆盖超类中方法的方法进行标记，如果被标记的方法并没有实际覆盖超类中的方法，则编译器会发出错误警告。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OverrideDemoTest</span> </span>&#123;</div><div class="line">  <span class="comment">//@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"测试注解"</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>

@@ -418,11 +418,6 @@
 <p>JDK1.7、JDK1.8可以去<a href="http://www.oracle.com/technetwork/java/javase/overview/index.html">Oracle官方</a>下载</p>
 <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>JDK默认安装路径为/Library/Java/JavaVirtualMachines</p>
 <p>多版本安装后效果为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># luosv @ luosvdeMacBook-Pro in /Library/Java/JavaVirtualMachines [20:50:56]</div><div class="line">$ ll</div><div class="line">total 0</div><div class="line">drwxr-xr-x  3 root  wheel   102B  4 21 20:19 jdk1.7.0_80.jdk</div><div class="line">drwxr-xr-x  3 root  wheel   102B  4 21 20:23 jdk1.8.0_131.jdk</div><div class="line"></div><div class="line"># luosv @ luosvdeMacBook-Pro in /Library/Java/JavaVirtualMachines [20:51:02]</div><div class="line">$</div></pre></td></tr></table></figure>
-<h4 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h4><p>1.执行以下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~</div><div class="line">open -e .bash_profile  #打开.bash_profile文件</div></pre></td></tr></table></figure>
-<p>注:假如.bash_profile文件不存在执行下面命令新建文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd ~</div><div class="line">touch .bash_profile #新建.bash_profile文件</div><div class="line">ls -a #查看文件是否创建成功</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/21/Mac OS/Mac下多版本JDK安装/#more" rel="contents">
@@ -586,8 +581,7 @@
 <h1 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h1><blockquote>
 <p>异常处理是程序开发中必不可少操作之一，但如何正确优雅的对异常进行处理确是一门学问，笔者根据自己的开发经验来谈一谈我是如何对异常进行处理的。<br>由于本文只作一些经验之谈，不涉及到基础知识部分，如果读者对异常的概念还很模糊，请先查看基础知识。</p>
 </blockquote>
-<h1 id="如何选择异常类型"><a href="#如何选择异常类型" class="headerlink" title="如何选择异常类型"></a>如何选择异常类型</h1><h2 id="异常的类别"><a href="#异常的类别" class="headerlink" title="异常的类别"></a>异常的类别</h2><p>正如我们所知道的，java中的异常的超类是java.lang.Throwable(后文省略为Throwable),它有两个比较重要的子类,java.lang.Exception(后文省略为Exception)和java.lang.Error(后文省略为Error)，其中Error由JVM虚拟机进行管理,如我们所熟知的OutOfMemoryError异常等，所以我们本文不关注Error异常，那么我们细说一下Exception异常。<br>Exception异常有个比较重要的子类，叫做RuntimeException。我们将RuntimeException或其他继承自RuntimeException的子类称为非受检异常(unchecked Exception)，其他继承自Exception异常的子类称为受检异常(checked Exception)。本文重点来关注一下受检异常和非受检异常这两种异常。</p>
-<h2 id="如何选择异常"><a href="#如何选择异常" class="headerlink" title="如何选择异常"></a>如何选择异常</h2><p>从笔者的开发经验来看，如果在一个应用中，需要开发一个方法(如某个功能的service方法)，这个方法如果中间可能出现异常，那么你需要考虑这个异常出现之后是否调用者可以处理，并且你是否希望调用者进行处理，如果调用者可以处理，并且你也希望调用者进行处理，那么就要抛出受检异常，提醒调用者在使用你的方法时，考虑到如果抛出异常时如果进行处理，相似的，如果在写某个方法时，你认为这是个偶然异常，理论上说，你觉得运行时可能会碰到什么问题，而这些问题也许不是必然发生的，也不需要调用者显示的通过异常来判断业务流程操作的，那么这时就可以使用一个RuntimeException这样的非受检异常.<br>好了，估计我上边说的这段话，你读了很多遍也依然觉得晦涩了。<br>那么，请跟着我的思路，在慢慢领会一下。</p>
+<h1 id="如何选择异常类型"><a href="#如何选择异常类型" class="headerlink" title="如何选择异常类型"></a>如何选择异常类型</h1><h2 id="异常的类别"><a href="#异常的类别" class="headerlink" title="异常的类别"></a>异常的类别</h2><p>正如我们所知道的，java中的异常的超类是java.lang.Throwable(后文省略为Throwable),它有两个比较重要的子类,java.lang.Exception(后文省略为Exception)和java.lang.Error(后文省略为Error)，其中Error由JVM虚拟机进行管理,如我们所熟知的OutOfMemoryError异常等，所以我们本文不关注Error异常，那么我们细说一下Exception异常。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/31/Java/如何优雅的设计java异常/#more" rel="contents">
@@ -770,11 +764,6 @@
 </tr>
 </tbody>
 </table>
-<h3 id="JAVA-注解"><a href="#JAVA-注解" class="headerlink" title="JAVA 注解"></a>JAVA 注解</h3><p>Annotation(注解)是JDK1.5及以后版本引入的。它可以用于创建文档，跟踪代码中的依赖性，甚至执行基本编译时检查。注解是以‘@注解名’在代码中存在的，根据注解参数的个数，我们可以将注解分为：标记注解、单值注解、完整注解三类。它们都不会直接影响到程序的语义，只是作为注解（标识）存在，我们可以通过<a href="http://baike.baidu.com/item/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6">反射机制</a>编程实现对这些元数据（用来描述数据的数据）的访问。另外，你可以在编译时选择代码里的注解是否只存在于<a href="http://baike.baidu.com/item/%E6%BA%90%E4%BB%A3%E7%A0%81">源代码</a>级，或者它也能在class文件、或者运行时中出现（SOURCE/CLASS/RUNTIME）。</p>
-<h3 id="元数据的作用"><a href="#元数据的作用" class="headerlink" title="元数据的作用"></a>元数据的作用</h3><p>如果要对于元数据的作用进行分类，还没有明确的定义，不过我们可以根据它所起的作用，大致可分为三类：</p>
-<p>编写文档：通过代码里标识的元数据生成文档。</p>
-<p>代码分析：通过代码里标识的元数据对代码进行分析。</p>
-<p>编译检查：通过代码里标识的元数据让<a href="http://baike.baidu.com/item/%E7%BC%96%E8%AF%91%E5%99%A8">编译器</a>能实现基本的编译检查</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/31/Java/Java注解/#more" rel="contents">
@@ -939,9 +928,6 @@
 <p>自2013年毕业后，今年已经是我工作的第4个年头了，总在做java相关的工作，终于有时间坐下来，写一篇关于java写法的一篇文章，来探讨一下如果你真的是一个java程序员，那你真的会写java吗?<br>笔者是一个务实的程序员，故本文绝非扯淡文章，文中内容都是干货，望读者看后，能有所收获。</p>
 </blockquote>
 <h1 id="文章核心"><a href="#文章核心" class="headerlink" title="文章核心"></a>文章核心</h1><p>其实，本不想把标题写的那么恐怖，只是发现很多人干了几年java以后，都自认为是一个不错的java程序员了，可以拿着上万的工资都处宣扬自己了，写这篇文章的目的并不是嘲讽和我一样做java的同行们，只是希望读者看到此骗文章后，可以和我一样，心平气和的争取做一个优秀的程序员。</p>
-<h2 id="讲述方向"><a href="#讲述方向" class="headerlink" title="讲述方向"></a>讲述方向</h2><p>由于一直从事移动互联网相关工作，java开发中经常和移动端打交道或者做一些后端的工作，所以本篇文章更可能涉及和移动端的交互或者与后端的交互方式，笔者希望以自身的一些学习经验或者开发经验，可以带动认真阅读本篇文章的读者们，让大家对java有一个更好的态度去学习它，它不只是一个赚钱的工具而已。</p>
-<p>笔者身边有很多与笔者年龄相仿或年龄更大的朋友或同事，经常有人问我：“你现在还在学习吗？我觉得没什么好学的，这些东西都差不多”，我总是回答只要有时间，我就要看一会书，这个时候，大家都会露出一副不屑的眼神或笑容。其实，非常能理解身边朋友或同事的看法，以目前状态来讲，大多都是工作至少5年的程序员了，对于公司大大小小的业务需要，以目前的知识储备来讲，都可以轻松应对，“没有什么好学的”其实这句话没有多大的问题，但是，如果你对编程还有一点点兴趣，只是不知道如何努力或改进，希望本篇文章可以帮到你。</p>
-<h2 id="技术点"><a href="#技术点" class="headerlink" title="技术点"></a>技术点</h2><p>本文不是一个吹嘘的文章，不会讲很多高深的架构，相反，会讲解很多基础的问题和写法问题，如果读者自认为基础问题和写法问题都是不是问题，那请忽略这篇文章，节省出时间去做一些有意义的事情。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/31/Java/细思极恐-你真的会写java吗/#more" rel="contents">
@@ -1106,11 +1092,6 @@
 <h4 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo npm install hexo-cli -g</div></pre></td></tr></table></figure>
 <h4 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init + 需要初始化的目录</div></pre></td></tr></table></figure>
 <p>这里建议<code>init</code>与你<code>github</code>仓库一样的名字<code>xxxx.github.io</code></p>
-<h4 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h4><p>进入初始化后的目录：<code>cd xxxx.github.io</code>安装Hexo依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install</div></pre></td></tr></table></figure></p>
-<h4 id="生成静态页面"><a href="#生成静态页面" class="headerlink" title="生成静态页面"></a>生成静态页面</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo generate # 简写 hexo g</div></pre></td></tr></table></figure>
-<p>本地预览其实不需要执行这部也行</p>
-<h4 id="启动本地服务"><a href="#启动本地服务" class="headerlink" title="启动本地服务"></a>启动本地服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo server # 简写 hexo s 调试加参数：--debug</div></pre></td></tr></table></figure>
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>浏览器输入： <a href="http://localhost:4000/">http://localhost:4000</a><br>若能正常显示网页切没有任何报错，恭喜你！到此Hexo的安装就完成了</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/20/哎折腾/Hexo+Next配置Blog/#more" rel="contents">
